@@ -96,12 +96,6 @@ def del_patient(pid):
     return redirect(url_for('list_patients'))
 
 
-def messy_maintenance_function(x):   
-    for p in patients:
-        if p['age'] == '':
-            p['age'] = None
-    return len(patients) + len(appointments)
-
 
 add_patient_record('Ahmed Ali', '30', '091-111-222')
 
