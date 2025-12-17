@@ -78,22 +78,18 @@ def api_get_patients():
 @app.route('/api/appointments', methods=['GET'])
 def api_get_appointments():
     return jsonify([{'id': a['id'], 'patient_id': a['patient']['id'], 'date': a['date'], 'description': a['description']} for a in appointments])
+
+
+
 @app.route('/del_patient/<int:pid>')
-
-
 def del_patient(pid):
-    global patients, appointments    
-    newp = []
-    for p in patients:
-        if p['id'] != pid:
-            newp.append(p)
-    patients = newp
-    newa = []
-    for a in appointments:
-        if a['patient']['id'] != pid:
-            newa.append(a)
-    appointments = newa
+    global patients, appointments
+    # حذف المريض والاحتفاظ بالآخرين
+    patients[:] = [p for p in patients if p['id'] != pid]
+    # حذف جميع المواعيد المرتبطة بهذا المريض
+    appointments[:] = [a for a in appointments if a['patient']['id'] != pid]
     return redirect(url_for('list_patients'))
+
 
 
 
