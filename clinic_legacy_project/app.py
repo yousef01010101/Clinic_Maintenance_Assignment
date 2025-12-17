@@ -1,13 +1,14 @@
 from flask import Flask, request, redirect, url_for, render_template, jsonify
 import datetime
 
+
 app = Flask(__name__)
 patients = []
 appointments = []
 _next_id = 1
 
 
-def create_patient(name, age, phone):
+def add_patient_record(name, age, phone):
     global _next_id
     p = {'id': _next_id, 'name': name, 'age': age, 'phone': phone, 'notes': ''}
     patients.append(p)
@@ -107,5 +108,7 @@ add_patient_record('Ahmed Ali', '30', '091-111-222')
 add_patient_record('Sara Omar', '25', '092-222-333')
 
 appointments.append({'id': 1, 'patient': patients[0], 'date': '2025-10-22', 'description': 'General Checkup'})
-if __name__ == '__main__':
-    app.run(debug=True)
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)
