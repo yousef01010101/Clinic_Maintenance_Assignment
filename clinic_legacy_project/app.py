@@ -43,7 +43,7 @@ def patient_add():
 
 @app.route('/patients/<int:pid>/edit', methods=['GET','POST'])
 def patient_edit(pid):
-    p = get_patient_by_id(pid)
+    p = find_patient(pid)
     if p is None:
         return "Not Found", 404
     if request.method == 'POST':
