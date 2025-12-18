@@ -1,9 +1,16 @@
 <!doctype html><html><head><title>Create Appointment</title></head><body>
 <h1>Create Appointment</h1>
+{% if errors %}
+<ul style="color:red;">
+{% for e in errors %}
+<li>{{ e }}</li>
+{% endfor %}
+</ul>
+{% endif %}
 <form method="post">
-<label>Patient: <select name="patient_id">{% for p in patients %}<option value="{{p.id}}">{{p.id}} - {{p.name}}</option>{% endfor %}</select></label><br/>
-<label>Date: <input name="date" placeholder="YYYY-MM-DD"/></label><br/>
-<label>Description: <input name="description"/></label><br/>
+<label>Patient: <select name="patient_id">{% for p in patients %}<option value="{{p.id}}" {% if patient_id is defined and patient_id|string==p.id|string %}selected{% endif %}>{{p.id}} - {{p.name}}</option>{% endfor %}</select></label><br/>
+<label>Date: <input name="date" placeholder="YYYY-MM-DD" value="{{ date|default('') }}"/></label><br/>
+<label>Description: <input name="description" value="{{ description|default('') }}"/></label><br/>
 <button type="submit">Create</button>
 </form>
 </body></html>

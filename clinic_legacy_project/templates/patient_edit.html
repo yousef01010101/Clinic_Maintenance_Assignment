@@ -1,9 +1,16 @@
 <!doctype html><html><head><title>Edit Patient</title></head><body>
 <h1>Edit Patient</h1>
+{% if errors %}
+<ul style="color:red;">
+{% for e in errors %}
+<li>{{ e }}</li>
+{% endfor %}
+</ul>
+{% endif %}
 <form method="post">
-<label>Name: <input name="name" value="{{patient.name}}"/></label><br/>
-<label>Age: <input name="age" value="{{patient.age}}"/></label><br/>
-<label>Phone: <input name="phone" value="{{patient.phone}}"/></label><br/>
+<label>Name: <input name="name" value="{{ name|default(patient.name) }}"/></label><br/>
+<label>Age: <input name="age" value="{{ age|default(patient.age) }}"/></label><br/>
+<label>Phone: <input name="phone" value="{{ phone|default(patient.phone) }}"/></label><br/>
 <button type="submit">Save</button>
 </form>
 </body></html>

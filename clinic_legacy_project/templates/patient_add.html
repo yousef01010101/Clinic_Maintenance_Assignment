@@ -1,9 +1,16 @@
 <!doctype html><html><head><title>Add Patient</title></head><body>
 <h1>Add Patient</h1>
+{% if errors %}
+<ul style="color:red;">
+{% for e in errors %}
+<li>{{ e }}</li>
+{% endfor %}
+</ul>
+{% endif %}
 <form method="post">
-<label>Name: <input name="name"/></label><br/>
-<label>Age: <input name="age"/></label><br/>
-<label>Phone: <input name="phone"/></label><br/>
+<label>Name: <input name="name" value="{{ name|default('') }}"/></label><br/>
+<label>Age: <input name="age" value="{{ age|default('') }}"/></label><br/>
+<label>Phone: <input name="phone" value="{{ phone|default('') }}"/></label><br/>
 <button type="submit">Add</button>
 </form>
 </body></html>
