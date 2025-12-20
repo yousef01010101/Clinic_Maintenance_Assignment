@@ -12,6 +12,8 @@ def add_appointment(patient, date, description):
     return ap
 
 
-def delete_appointments_for_patient(pid):
+
+
+def delete_appointment(aid):
     global appointments
-    appointments[:] = [a for a in appointments if a['patient']['id'] != pid]
+    appointments[:] = [a for a in appointments if a['id'] != aid]
